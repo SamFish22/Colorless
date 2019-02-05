@@ -11,6 +11,8 @@ public class Controller : MonoBehaviour
     public TextMesh textPoint;
     private Vector3 jump;
     private Renderer rend;
+
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +25,11 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed, 0f, Input.GetAxis("Vertical") * Time.deltaTime * speed);
+        transform.localRotation = Camera.main.transform.localRotation;
+
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);  //https://answers.unity.com/questions/1367178/set-fixed-rotation-position-of-object-in-world-spa.html
+
+        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed, 0f, Input.GetAxis("Vertical") * Time.deltaTime * speed, Space.Self);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
