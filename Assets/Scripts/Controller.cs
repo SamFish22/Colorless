@@ -41,14 +41,32 @@ public class Controller : MonoBehaviour
     {
         if (collision.collider.tag == "death"){
             GameOver();
-        } else if (collision.collider.tag == "red")
+        } else if (collision.collider.tag == "yellow")
+        {
+            collision.gameObject.SetActive(false);
+            rend.material.shader = Shader.Find("_Color");
+            rend.material.SetColor("_Color", Color.yellow);
+            
+            rend.material.shader = Shader.Find("Specular");
+            rend.material.SetColor("_SpecColor", Color.blue);
+        }
+        else if (collision.collider.tag == "red")
         {
             collision.gameObject.SetActive(false);
             rend.material.shader = Shader.Find("_Color");
             rend.material.SetColor("_Color", Color.red);
-            
+
             rend.material.shader = Shader.Find("Specular");
             rend.material.SetColor("_SpecColor", Color.green);
+        }
+        else if (collision.collider.tag == "blue")
+        {
+            collision.gameObject.SetActive(false);
+            rend.material.shader = Shader.Find("_Color");
+            rend.material.SetColor("_Color", Color.blue);
+
+            rend.material.shader = Shader.Find("Specular");
+            rend.material.SetColor("_SpecColor", Color.yellow);
         }
     }
     private void GameOver()
