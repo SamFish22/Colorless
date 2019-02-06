@@ -13,6 +13,7 @@ public class Controller : MonoBehaviour
     private Renderer rend;
     public Light l1, l2, l3;
     private bool done;
+    private bool canJump;
 
     private GameObject player;
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class Controller : MonoBehaviour
         l2.enabled = false;
         l3.enabled = false;
         done = false;
+        canJump = true;
     }
 
     // Update is called once per frame
@@ -44,8 +46,9 @@ public class Controller : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
+            canJump = false;
             gameObject.GetComponent<Rigidbody>().AddForce(jump, ForceMode.Impulse);
         }
     }
@@ -81,6 +84,10 @@ public class Controller : MonoBehaviour
             rend.material.shader = Shader.Find("Specular");
             rend.material.SetColor("_SpecColor", Color.yellow);
             Winner();
+        }
+        else if (collision.collider.tag == "ground")
+        {
+            canJump = true;
         }
     }
     private void GameOver()
