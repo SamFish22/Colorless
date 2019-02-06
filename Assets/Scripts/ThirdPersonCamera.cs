@@ -7,7 +7,7 @@ public class ThirdPersonCamera : MonoBehaviour
     //https://www.youtube.com/watch?v=Gv70bd_GHkA
 
     public bool lockCursor;
-    public float mouseSensitivity = 10;
+    public float mouseSensitivity = 8;
     public Transform target;
     public float dstFromTarget = 2;
     public Vector2 pitchMinMax = new Vector2(-40, 85);
